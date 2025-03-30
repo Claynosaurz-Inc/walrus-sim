@@ -3,11 +3,11 @@
 Simulate and estimate storage costs on the [Walrus Protocol](https://www.walrus.xyz) using real image files and the official Walrus CLI.
 
 Supports:
-- 📦 Cost simulation with dry-run mode
-- ☁️ Actual upload to Walrus storage
-- ✅ Balance checks using `sui client balance`
-- 📊 HTML reports with blob size, cost, blobId, duplication, and expiration metadata
-- ⚡️ Multi-process for fast execution
+- Cost simulation with dry-run mode
+- Actual upload to Walrus storage (Experimental: Switch to HTTP API Daemon) 
+- Balance checks using `sui client balance`
+- HTML reports with blob size, cost, blobId, duplication, and expiration metadata
+- Multi-process for fast execution
 
 ## Prerequisites
 
