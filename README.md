@@ -7,25 +7,30 @@ Supports:
 - ☁️ Actual upload to Walrus storage
 - ✅ Balance checks using `sui client balance`
 - 📊 HTML reports with blob size, cost, blobId, duplication, and expiration metadata
-- 🛠 Full CLI powered by [Typer](https://typer.tiangolo.com/)
 - ⚡️ Multi-process for fast execution
 
----
+## Prerequisites
 
-## 🧰 Installation
+This tool requires you to have the following CLI installed: 
 
-### ✅ Option 1: Using Poetry (for development)
+- Walrus CLI | [Installation Instructions](https://docs.wal.app/usage/setup.html)
+- SUI CLI | [Installation Instructions](https://docs.sui.io/guides/developer/getting-started/sui-install)
+
+
+## Installation
+
+### Option 1: Using Poetry (for development)
 
 ```bash
-git clone https://github.com/your-org/walrus-sim.git
+git clone https://github.com/Claynosaurz-Inc/walrus-sim.git
 cd walrus-sim
 poetry install
 poetry run walrus-sim --help
 ```
 
-### ✅ Option 2: Download prebuilt CLI
+### Option 2: Download prebuilt CLI
 
-Visit the [Releases page](https://github.com/your-org/walrus-sim/releases) and download the latest:
+Visit the [Releases page](https://github.com/Claynosaurz-Inc/walrus-sim/releases) and download the latest:
 
 ```bash
 chmod +x walrus-sim.pyz
@@ -34,18 +39,18 @@ chmod +x walrus-sim.pyz
 
 ---
 
-## 🚀 CLI Commands
+## CLI Commands
 
 ### `simulate`
 
 Run a dry-run simulation of uploading files and generate a full cost + metadata report.
 
 ```bash
-walrus-sim simulate --path ./generated --context mainnet --epochs max --workers 4 --verify
+walrus-sim simulate --path ./images --context mainnet --epochs max --workers 4 --verify
 ```
 
 **Options**:
-- `--path`: Folder containing `.webp`, `.jpg`, `.png`, `.gif` (default: `./generated`)
+- `--path`: Folder containing `.webp`, `.jpg`, `.png`, `.gif` (default: `./images`)
 - `--context`: `mainnet` or `testnet` (default: `mainnet`)
 - `--epochs`: How long to store blobs (`max` or number)
 - `--workers`: Number of concurrent workers (default: CPU count)
@@ -63,58 +68,17 @@ walrus-sim simulate --path ./generated --context mainnet --epochs max --workers 
 Actually uploads the files to Walrus storage, with pre-checks:
 
 ```bash
-walrus-sim upload --path ./generated --context mainnet --share --epochs 3
+walrus-sim upload --path ./images --context mainnet --share --epochs 3
 ```
 
-✅ Includes:
-- `sui client balance --json` validation
+Includes:
 - WAL and SUI balance check before proceeding
 - Dry-run cost check before actual storage
-- Uploads only if wallet has sufficient FROST and SUI
+- Uploads only if wallet has sufficient WAL / SUI
 
----
 
-### `docs`
 
-Prints the full CLI usage documentation directly to the console:
-
-```bash
-walrus-sim docs
-```
-
----
-
-## 📊 HTML Report
-
-The CLI auto-generates a beautiful Tailwind-powered summary:
-
-- ✅ Image name
-- ✅ Blob ID
-- ✅ Size in GB
-- ✅ Storage cost in WAL
-- ✅ Whether it's shared
-- ✅ Duplication info
-- ✅ Blob expiration epoch
-
----
-
-## 🔒 Prerequisites
-
-Make sure you have both installed and available in your terminal:
-
-- `walrus` CLI
-- `sui` CLI
-
-You can verify with:
-
-```bash
-which walrus
-which sui
-```
-
----
-
-## 🛠 Dev Commands
+## Dev Commands
 
 ```bash
 # Run CLI with local source
@@ -127,19 +91,6 @@ poetry run shiv -c walrus-sim -o dist/walrus-sim.pyz -p '/usr/bin/env python3' .
 ./dist/walrus-sim.pyz simulate --help
 ```
 
----
-
-## 📦 Releases
-
-GitHub Actions will automatically build and upload `walrus-sim.pyz` on every new Git tag.
-
-```bash
-git tag v0.1.0
-git push origin v0.1.0
-```
-
----
-
-## 👋 License
+## License
 
 MIT – feel free to fork, adapt, or integrate with your own SUI or Walrus workflow!
